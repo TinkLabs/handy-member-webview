@@ -4,9 +4,15 @@ defaults: &defaults
     - image: circleci/node:8.11.2
   steps:
     - checkout
+    - run: 
+        name: Install aws command line
+        command: sudo apt-get update && sudo apt-get install -y python-dev python-pip
+    - run: 
+        name: Install aws command line
+        command: sudo pip install awscli
     - run:
         name: Deploy $ENV
-        command: yarn build && aws s3 rm $S3_BUCKET --recursive --region ap-southeast-1 && aws s3 cp --recursive ./build $S3_BUCKET --region ap-southeast-1
+        command: aws s3 rm $S3_BUCKET --recursive --region ap-southeast-1 && aws s3 cp --recursive ./build $S3_BUCKET --region ap-southeast-1
     - run:
         name: activate cloud front
         command: aws configure set preview.cloudfront true && aws configure set preview.create-invalidation true
