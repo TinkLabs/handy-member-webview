@@ -12,7 +12,7 @@ defaults: &defaults
         command: sudo pip install awscli
     - run:
         name: Deploy $ENV
-        command: aws s3 rm $S3_BUCKET --recursive --region ap-southeast-1 && aws s3 cp --recursive ./build $S3_BUCKET --region ap-southeast-1
+        command: aws s3 rm $S3_BUCKET --recursive --region ap-southeast-1 && aws s3 cp --recursive ./src $S3_BUCKET --region ap-southeast-1
     - run:
         name: activate cloud front
         command: aws configure set preview.cloudfront true && aws configure set preview.create-invalidation true
@@ -49,7 +49,7 @@ jobs:
     environment:
       ENV: production
       S3_BUCKET: s3://member-webview
-      CLOUDFRONT_ID: E1VS68ZIPHALH9
+      CLOUDFRONT_ID: E1AEDNNO5QKC43
     <<: *defaults
 workflows:
   version: 2
