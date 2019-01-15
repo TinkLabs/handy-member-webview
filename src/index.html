@@ -123,11 +123,13 @@
 					function(result) {
 						document.getElementById('debug').innerHTML = result;
 						var json = JSON.parse(result);
-						// document.getElementById('name').innerHTML = data.firstName + ' ' + data.lastName;
-						// document.getElementById('location').innerHTML = data.country;
-						// if (data.picture) {
-							// document.getElementById('icon').style = 'background-image: url(' + data.picture + ')';
-						// }
+						var data = json.data;
+						if (!data) return;
+						document.getElementById('name').innerHTML = data.firstName + ' ' + data.lastName;
+						document.getElementById('location').innerHTML = data.country || '';
+						if (data.picture) {
+							document.getElementById('icon').style = 'background-image: url(' + data.picture + ')';
+						}
 					},
 					function() {
 						getToken(); // Get token to trigger re-login flow
