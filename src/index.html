@@ -96,7 +96,7 @@
 			}
 			function getToken() {
 				if (typeof window.Profile === 'undefined' || typeof window.Profile.getUserToken() === 'undefined') {
-					return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+					return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1aWQiOiIyNzQ4MDU5NDkwMjQ0NjA4MDAifQ.jDM9yjH-iva4j6NGqv07irvprD5wnqfQksLOEUmQdKvXmRQ6iBFHSJDXAWEG3nO8q9lmLEuy7YP2VU5z0tP82sieSp_xaPGMPNKTur2ZpMqeS8MbIu7LKumRcX5aCoAO5VFJiUfoe6qqwYiH4C6u-SynLMIBT3D9UFTqjv6YA-V-teQoxDam_bx3gNHXejiXH1p5gvnGylAsRNIzg13jkZT1Y9WJgj0v0XfCLCBK7SjqV6HWm4OkC0WGTvPqk2vYpkm8kUQdc1zro87r_oBChM6XOAUqsQwowBps73hEm6eYEWxKpLEPe39tYsWTFAkd6-PL95hFscHAEVsZLyxwaA';
 				}
 				return Profile.getUserToken();
 			}
@@ -123,9 +123,11 @@
 					function(result) {
 						document.getElementById('debug').innerHTML = result;
 						var json = JSON.parse(result);
-						// document.getElementById('name').innerHTML = 'Jane Doe';
-						// document.getElementById('location').innerHTML = 'New York, NY';
-						// document.getElementById('icon').style = '';
+						// document.getElementById('name').innerHTML = data.firstName + ' ' + data.lastName;
+						// document.getElementById('location').innerHTML = data.country;
+						// if (data.picture) {
+							// document.getElementById('icon').style = 'background-image: url(' + data.picture + ')';
+						// }
 					},
 					function() {
 						getToken(); // Get token to trigger re-login flow
