@@ -25,25 +25,25 @@ jobs:
     environment:
       ENV: staging
       S3_BUCKET: s3://member-webview-staging
-      CLOUDFRONT_ID: E32OX7EPKG3UDU
+      CLOUDFRONT_ID: E10NY7095GDBYB
     <<: *defaults
   deploy-sandbox:
     environment:
       ENV: sandbox
       S3_BUCKET: s3://member-webview-sandbox
-      CLOUDFRONT_ID: E1AEDNNO5QKC43
+      CLOUDFRONT_ID: E3DIIXR2MX7CX3
     <<: *defaults
   deploy-uat:
     environment:
       ENV: uat
       S3_BUCKET: s3://member-webview-uat
-      CLOUDFRONT_ID: EBDGCY1V7JU6C
+      CLOUDFRONT_ID: E3MTBSOK8KPSR9
     <<: *defaults
   deploy-dev:
     environment:
       ENV: development
       S3_BUCKET: s3://member-webview-dev
-      CLOUDFRONT_ID: E1JR6O8EV5O3PZ
+      CLOUDFRONT_ID: E1KWQTBWJD7XCH
     <<: *defaults
   deploy-production:
     environment:
