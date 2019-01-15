@@ -83,14 +83,24 @@
 			<div class="name" id="name">Anonymous</div>
 			<div class="location" id="location"></div>
 			<img class="logo" src="img/mini_hi.png" />
+			<div><code id="debug"></code></div>
 		</div>	
 			
 		<script>
-			var requestURL = 'data:,Hello%2C%20World!';
-			function getToken() {
-				return 'xxx';
+			var requestURL = '/v1/member/baseInfo';
+			function getDomain() {
+				if (typeof window.Profile === 'undefined' || typeof window.Profile.getSSODomain() === 'undefined') {
+					return '';
+				}
+				return Profile.getSSODomain();
 			}
-			function getInfo(token, successCallback, errorCallback) {
+			function getToken() {
+				if (typeof window.Profile === 'undefined' || typeof window.Profile.getUserToken() === 'undefined') {
+					return '';
+				}
+				return Profile.getUserToken();
+			}
+			function getInfo(url, token, successCallback, errorCallback) {
 				var xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
@@ -100,21 +110,27 @@
 						errorCallback();
 					}
 				};
-				xhttp.open("GET", requestURL, true);
+				xhttp.open("GET", url, true);
 				xhttp.send();
 			}
-			
 			var token = getToken();
-			getInfo(
-				token,
-				function() {
-					document.getElementById('name').innerHTML = 'Jane Doe';
-					document.getElementById('location').innerHTML = 'New York, NY';
-					document.getElementById('icon').style = '';
-				},
-				function() {
-					getToken(); // Get token to trigger re-login flow
-				});
+			if (token) {
+				document.getElementById('debug').innerHTML = 'token:' + token + ' url:' + getDomain() + requestURL;
+				getInfo(
+					getDomain() + requestURL,
+					token,
+					function(result) {
+						document.getElementById('debug').innerHTML = result;
+						var json = JSON.parse(result);
+						// document.getElementById('name').innerHTML = 'Jane Doe';
+						// document.getElementById('location').innerHTML = 'New York, NY';
+						// document.getElementById('icon').style = '';
+					},
+					function() {
+						getToken(); // Get token to trigger re-login flow
+					});
+			}
+			
 			
 			
 		</script>
