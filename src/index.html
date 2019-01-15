@@ -78,12 +78,62 @@
 		<img class="background-image" src="img/bg.png" />
 		<div class="container">
 			<div class="icon-wrapper">
-				<div class="icon" style=""></div>
+				<div class="icon" id="icon"></div>
 			</div>
-			<div class="name">Jane Doe</div>
-			<div class="location">New York, NY</div>
+			<div class="name" id="name">Anonymous</div>
+			<div class="location" id="location"></div>
 			<img class="logo" src="img/mini_hi.png" />
+			<div><code id="debug"></code></div>
 		</div>	
 			
+		<script>
+			var requestURL = '/v1/member/baseInfo';
+			function getDomain() {
+				if (typeof window.Profile === 'undefined' || typeof window.Profile.getSSODomain() === 'undefined') {
+					return 'https://csp-uat.handytravel.tech/profile';
+				}
+				return Profile.getSSODomain();
+			}
+			function getToken() {
+				if (typeof window.Profile === 'undefined' || typeof window.Profile.getUserToken() === 'undefined') {
+					return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+				}
+				return Profile.getUserToken();
+			}
+			function getInfo(url, token, successCallback, errorCallback) {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						// Typical action to be performed when the document is ready:
+						successCallback(xhttp.responseText);
+					} else {
+						errorCallback();
+					}
+				};
+				xhttp.open("GET", url, true);
+				xhttp.setRequestHeader('Authorization', token);
+				xhttp.send();
+			}
+			var token = getToken();
+			if (token) {
+				document.getElementById('debug').innerHTML = 'token:' + token + ' url:' + getDomain() + requestURL;
+				getInfo(
+					getDomain() + requestURL,
+					token,
+					function(result) {
+						document.getElementById('debug').innerHTML = result;
+						var json = JSON.parse(result);
+						// document.getElementById('name').innerHTML = 'Jane Doe';
+						// document.getElementById('location').innerHTML = 'New York, NY';
+						// document.getElementById('icon').style = '';
+					},
+					function() {
+						getToken(); // Get token to trigger re-login flow
+					});
+			}
+			
+			
+			
+		</script>
 	</body>
 </html>
