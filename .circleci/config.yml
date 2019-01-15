@@ -49,7 +49,7 @@ jobs:
     environment:
       ENV: production
       S3_BUCKET: s3://member-webview
-      CLOUDFRONT_ID: E1AEDNNO5QKC43
+      CLOUDFRONT_ID: E13L1HWW9VV8N4
     <<: *defaults
 workflows:
   version: 2
