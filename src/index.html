@@ -44,7 +44,7 @@
 				left: 0;
 			}
 			.icon {
-				background-image: url(img/avatar_default.png);
+				/* background-image: url(img/avatar_default.png); */
 				display: inline-block;
 				width: 80px;
 				height: 80px;
@@ -81,23 +81,23 @@
 			<div class="icon-wrapper">
 				<div class="icon" id="icon"></div>
 			</div>
-			<div class="name" id="name">Anonymous</div>
+			<div class="name" id="name"></div>
 			<div class="location" id="location"></div>
 			<img class="logo" src="img/mini_hi.png" />
-			<div><code id="debug"></code></div>
+			<!--div><code id="debug"></code></div-->
 		</div>	
 			
 		<script>
 			var requestURL = '/v1/member/baseInfo';
 			function getDomain() {
 				if (typeof window.Profile === 'undefined' || typeof window.Profile.getSSODomain() === 'undefined') {
-					return 'https://csp-uat.handytravel.tech/profile';
+					return '';
 				}
 				return Profile.getSSODomain();
 			}
 			function getToken() {
 				if (typeof window.Profile === 'undefined' || typeof window.Profile.getUserToken() === 'undefined') {
-					return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1aWQiOiIyNzQ4MDU5NDkwMjQ0NjA4MDAifQ.jDM9yjH-iva4j6NGqv07irvprD5wnqfQksLOEUmQdKvXmRQ6iBFHSJDXAWEG3nO8q9lmLEuy7YP2VU5z0tP82sieSp_xaPGMPNKTur2ZpMqeS8MbIu7LKumRcX5aCoAO5VFJiUfoe6qqwYiH4C6u-SynLMIBT3D9UFTqjv6YA-V-teQoxDam_bx3gNHXejiXH1p5gvnGylAsRNIzg13jkZT1Y9WJgj0v0XfCLCBK7SjqV6HWm4OkC0WGTvPqk2vYpkm8kUQdc1zro87r_oBChM6XOAUqsQwowBps73hEm6eYEWxKpLEPe39tYsWTFAkd6-PL95hFscHAEVsZLyxwaA';
+					return '';
 				}
 				return Profile.getUserToken();
 			}
@@ -130,6 +130,8 @@
 						document.getElementById('location').innerHTML = data.country || '';
 						if (data.picture) {
 							document.getElementById('icon').style = 'background-image: url(' + data.picture + ')';
+						} else {
+							document.getElementById('icon').style = 'background-image: url(img/avatar_default.png)';
 						}
 					},
 					function() {
