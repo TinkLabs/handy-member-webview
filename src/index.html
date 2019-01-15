@@ -65,6 +65,7 @@
 			.location {
 				padding: 4px 0;
 				font-size: 14px;
+				text-transform: capitalize;
 			}
 			.logo {
 				width: 45px;
@@ -125,7 +126,7 @@
 						var json = JSON.parse(result);
 						var data = json.data;
 						if (!data) return;
-						document.getElementById('name').innerHTML = data.firstName + ' ' + data.lastName;
+						document.getElementById('name').innerHTML = (data.firstName || '') + ' ' + (data.lastName || '');
 						document.getElementById('location').innerHTML = data.country || '';
 						if (data.picture) {
 							document.getElementById('icon').style = 'background-image: url(' + data.picture + ')';
