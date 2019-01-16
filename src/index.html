@@ -149,7 +149,7 @@
 					getDomain() + requestURL,
 					token,
 					function(result) {
-						document.getElementById('debug').innerHTML = result;
+						// document.getElementById('debug').innerHTML = result;
 						var json = JSON.parse(result);
 						var data = json.data;
 						if (!data) return;
