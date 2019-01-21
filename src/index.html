@@ -73,7 +73,7 @@
 				margin: 16px 0;
 			}
 			#debug {
-				color: #fff;
+				/* color: #fff; */
 			}
 		
 		</style>
@@ -162,13 +162,13 @@
 			}
 			function getLocale() {
 				if (typeof window.Android === 'undefined' || typeof window.Android.getDeviceCurrentLocale() === 'undefined') {
-					return 'ja-JP';
+					return '';
 				}
 				return Android.getDeviceCurrentLocale().replace('_', '-');
 			};
 			var token = getToken();
 			if (token) {
-				document.getElementById('debug').innerHTML = readCookie('locale');
+				document.getElementById('debug').innerHTML = getLocale();
 
 				getInfo(
 					getDomain() + requestURL + '?lng=' + getLocale(),
