@@ -90,6 +90,7 @@
 			// window.Android.showToast(window.Android.getGlobalProperties());
 			return JSON.parse(window.Android.getGlobalProperties());
 		};
+		
 		mixpanel.track(
 		    "Screen View",
 		    Object.assign(getAndroidGlobalProperty(), {
@@ -142,11 +143,31 @@
 				xhttp.setRequestHeader('Authorization', token);
 				xhttp.send();
 			}
+			function readCookie(name) {
+				var nameEQ = name + "=";
+				var ca = document.cookie.split(';');
+				for(var i=0;i < ca.length;i++) {
+					var c = ca[i];
+					while (c.charAt(0) === ' ') {
+						c = c.substring(1,c.length);
+					}
+					if (c.indexOf(nameEQ) === 0) {
+						return c.substring(nameEQ.length,c.length);
+					}
+				}
+				return null;
+			}
+			function getLocale() {
+				if (!readCookie('locale')) {
+					return 'en-US';
+				}
+				return readCookie('locale').replace('_', '-');
+			};
 			var token = getToken();
 			if (token) {
 				// document.getElementById('debug').innerHTML = 'token:' + token + ' url:' + getDomain() + requestURL;
 				getInfo(
-					getDomain() + requestURL,
+					getDomain() + requestURL + '?lng=' + getLocale(),
 					token,
 					function(result) {
 						// document.getElementById('debug').innerHTML = result;
