@@ -115,7 +115,6 @@
 			<div class="name" id="name"></div>
 			<div class="location" id="location"></div>
 			<img class="logo" src="img/mini_hi.png" />
-			<div><code id="debug"></code></div>
 		</div>	
 			
 		<script>
@@ -162,13 +161,12 @@
 			}
 			function getLocale() {
 				if (typeof window.Android === 'undefined' || typeof window.Android.getDeviceCurrentLocale() === 'undefined') {
-					return '';
+					return 'en-US';
 				}
 				return Android.getDeviceCurrentLocale().replace('_', '-');
 			};
 			var token = getToken();
 			if (token) {
-				document.getElementById('debug').innerHTML = getLocale();
 
 				getInfo(
 					getDomain() + requestURL + '?lng=' + getLocale(),
