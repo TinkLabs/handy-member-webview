@@ -161,6 +161,7 @@
 				if (!readCookie('locale')) {
 					return 'en-US';
 				}
+				alert(readCookie('locale').replace('_', '-'));
 				return readCookie('locale').replace('_', '-');
 			};
 			var token = getToken();
