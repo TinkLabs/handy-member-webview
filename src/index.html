@@ -158,11 +158,10 @@
 				return null;
 			}
 			function getLocale() {
-				if (!readCookie('locale')) {
+				if (typeof window.Android === 'undefined' || typeof window.Android.getDeviceCurrentLocale() === 'undefined') {
 					return 'en-US';
 				}
-				alert(readCookie('locale').replace('_', '-'));
-				return readCookie('locale').replace('_', '-');
+				return Android.getDeviceCurrentLocale().replace('_', '-');
 			};
 			var token = getToken();
 			if (token) {
