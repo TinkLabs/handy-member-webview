@@ -72,6 +72,9 @@
 				text-align: center;
 				margin: 16px 0;
 			}
+			#debug {
+				color: #fff;
+			}
 		
 		</style>
 		<!-- start Mixpanel -->
@@ -112,6 +115,7 @@
 			<div class="name" id="name"></div>
 			<div class="location" id="location"></div>
 			<img class="logo" src="img/mini_hi.png" />
+			<div><code id="debug"></code></div>
 		</div>	
 			
 		<script>
@@ -164,13 +168,12 @@
 			};
 			var token = getToken();
 			if (token) {
-				alert(readCookie('locale'));
+				document.getElementById('debug').innerHTML = readCookie('locale');
 
 				getInfo(
 					getDomain() + requestURL + '?lng=' + getLocale(),
 					token,
 					function(result) {
-						// document.getElementById('debug').innerHTML = result;
 						var json = JSON.parse(result);
 						var data = json.data;
 						if (!data) return;
