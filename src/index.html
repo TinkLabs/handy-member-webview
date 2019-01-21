@@ -157,7 +157,6 @@
 				return null;
 			}
 			function getLocale() {
-				alert(readCookie('locale'));
 				if (typeof window.Android === 'undefined' || typeof window.Android.getDeviceCurrentLocale() === 'undefined') {
 					return 'ja-JP';
 				}
@@ -165,6 +164,8 @@
 			};
 			var token = getToken();
 			if (token) {
+				alert(readCookie('locale'));
+
 				getInfo(
 					getDomain() + requestURL + '?lng=' + getLocale(),
 					token,
