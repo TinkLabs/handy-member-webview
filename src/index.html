@@ -125,6 +125,17 @@
 				}
 				return Profile.getSSODomain();
 			}
+			function getLocale() {
+				if (typeof window.Android === 'undefined' || typeof window.Android.getDeviceCurrentLocale() === 'undefined') {
+					return 'en';
+				}
+				const locale = Android.getDeviceCurrentLocale().replace('_', '-');
+				if (locale.indexOf('zh') > -1) {
+					return locale;
+				} else {
+					return locale.split('-')[0];
+				}
+			};
 			function getToken() {
 				if (typeof window.Profile === 'undefined' || typeof window.Profile.getUserToken() === 'undefined') {
 					return '';
@@ -143,6 +154,7 @@
 				};
 				xhttp.open("GET", url, true); 
 				xhttp.setRequestHeader('Authorization', token);
+				xhttp.setRequestHeader('Accept-Language', getLocale());
 				xhttp.send();
 			}
 			function readCookie(name) {
@@ -159,17 +171,12 @@
 				}
 				return null;
 			}
-			function getLocale() {
-				if (typeof window.Android === 'undefined' || typeof window.Android.getDeviceCurrentLocale() === 'undefined') {
-					return 'en-US';
-				}
-				return Android.getDeviceCurrentLocale().replace('_', '-');
-			};
+			
 			var token = getToken();
 			if (token) {
 
 				getInfo(
-					getDomain() + requestURL + '?lng=' + getLocale(),
+					getDomain() + requestURL,
 					token,
 					function(result) {
 						var json = JSON.parse(result);
