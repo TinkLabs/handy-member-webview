@@ -127,12 +127,9 @@
 			}
 			function getLocale() {
 				if (typeof window.Android === 'undefined' || typeof window.Android.getDeviceCurrentLocale() === 'undefined') {
-					return 'en';
+					return 'en_US';
 				}
-				const locale = Android.getDeviceCurrentLocale();
-				const locale2 = locale.replace('_', '-');
-				const locale3 = locale.split('_').length ? locale.split('_')[0] : locale;
-				return locale2 + ',' + locale + ',' + locale3;
+				return Android.getDeviceCurrentLocale();
 			};
 			function getToken() {
 				if (typeof window.Profile === 'undefined' || typeof window.Profile.getUserToken() === 'undefined') {
