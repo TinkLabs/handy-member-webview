@@ -115,7 +115,6 @@
 			<div class="name" id="name"></div>
 			<div class="location" id="location"></div>
 			<img class="logo" src="img/mini_hi.png" />
-			<div id="debug"></div>
 		</div>	
 			
 		<script>
@@ -170,7 +169,6 @@
 			
 			var token = getToken();
 			if (token) {
-				document.getElementById('debug').innerHTML = token;
 				getInfo(
 					getDomain() + requestURL,
 					token,
