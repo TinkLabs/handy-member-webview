@@ -154,8 +154,9 @@
 					}
 				};
 				xhttp.open("GET", url, true); 
-				document.getElementById('debug').innerHTML = token;
 				xhttp.setRequestHeader('Authorization', token);
+				document.getElementById('debug').innerHTML = getLocale();
+
 				xhttp.setRequestHeader('Accept-Language', getLocale());
 				xhttp.send();
 			}
