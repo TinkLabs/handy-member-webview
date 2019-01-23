@@ -132,7 +132,7 @@
 				const locale = Android.getDeviceCurrentLocale();
 				const locale2 = locale.replace('_', '-');
 				const locale3 = locale.split('_').length ? locale.split('_')[0] : locale;
-				return locale3 + ',' + locale2 + ',' + locale;
+				return locale2 + ',' + locale + ',' + locale3;
 			};
 			function getToken() {
 				if (typeof window.Profile === 'undefined' || typeof window.Profile.getUserToken() === 'undefined') {
