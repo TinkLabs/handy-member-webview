@@ -130,11 +130,7 @@
 					return 'en';
 				}
 				const locale = Android.getDeviceCurrentLocale().replace('_', '-');
-				if (locale.indexOf('zh') > -1) {
-					return locale;
-				} else {
-					return locale.split('-')[0];
-				}
+				return locale.split('-')[0] + ',' + locale;
 			};
 			function getToken() {
 				if (typeof window.Profile === 'undefined' || typeof window.Profile.getUserToken() === 'undefined') {
