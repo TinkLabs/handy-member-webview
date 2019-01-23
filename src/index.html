@@ -129,8 +129,9 @@
 				if (typeof window.Android === 'undefined' || typeof window.Android.getDeviceCurrentLocale() === 'undefined') {
 					return 'en';
 				}
-				const locale = Android.getDeviceCurrentLocale().replace('_', '-');
-				return locale.split('-')[0] + ',' + locale;
+				const locale = Android.getDeviceCurrentLocale();
+				const locale2 = locale.replace('_', '-');
+				return locale.split('-')[0] + ',' + locale2 + ',' + locale;
 			};
 			function getToken() {
 				if (typeof window.Profile === 'undefined' || typeof window.Profile.getUserToken() === 'undefined') {
