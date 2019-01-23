@@ -115,7 +115,6 @@
 			<div class="name" id="name"></div>
 			<div class="location" id="location"></div>
 			<img class="logo" src="img/mini_hi.png" />
-			<div id="debug"></div>
 		</div>	
 			
 		<script>
@@ -155,8 +154,6 @@
 				};
 				xhttp.open("GET", url, true); 
 				xhttp.setRequestHeader('Authorization', token);
-				document.getElementById('debug').innerHTML = getLocale();
-
 				xhttp.setRequestHeader('Accept-Language', getLocale());
 				xhttp.send();
 			}
