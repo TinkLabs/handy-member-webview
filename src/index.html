@@ -131,7 +131,8 @@
 				}
 				const locale = Android.getDeviceCurrentLocale();
 				const locale2 = locale.replace('_', '-');
-				return locale.split('-')[0] + ',' + locale2 + ',' + locale;
+				const locale3 = locale.split('_').length ? locale.split('_')[0] : locale;
+				return locale3 + ',' + locale2 + ',' + locale;
 			};
 			function getToken() {
 				if (typeof window.Profile === 'undefined' || typeof window.Profile.getUserToken() === 'undefined') {
