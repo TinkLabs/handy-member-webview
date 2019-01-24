@@ -116,6 +116,7 @@
 			<div class="name" id="name"></div>
 			<div class="location" id="location"></div>
 			<img class="logo" src="img/mini_hi.png" />
+			<div id="debug"></div>
 		</div>	
 			
 		<script>
@@ -169,6 +170,8 @@
 			}
 			
 			var token = getToken();
+			document.getElementById('debug') = JSON.parse(getAndroidGlobalProperty());
+
 			if (token) {
 				getInfo(
 					getDomain() + requestURL,
