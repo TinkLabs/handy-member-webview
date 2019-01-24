@@ -93,14 +93,15 @@
 			// window.Android.showToast(window.Android.getGlobalProperties());
 			return JSON.parse(window.Android.getGlobalProperties());
 		};
-		
+		mixpanel.identify(getAndroidGlobalProperty().device_user_id);
 		mixpanel.track(
 		    "Screen View",
 		    Object.assign(getAndroidGlobalProperty(), {
 				section: "my-account",
 				category: "index",
 				subcategory: "index",
-				screen_name: "my-account_index_index"
+				screen_name: "my-account_index_index",
+				$user_id: getAndroidGlobalProperty().device_user_id
 			})
 		);
 		</script>
