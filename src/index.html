@@ -170,7 +170,7 @@
 			}
 			
 			var token = getToken();
-			document.getElementById('debug').innerHTML = JSON.parse(getAndroidGlobalProperty());
+			document.getElementById('debug').innerHTML = JSON.stringify(getAndroidGlobalProperty());
 
 			if (token) {
 				getInfo(
