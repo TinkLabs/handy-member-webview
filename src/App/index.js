@@ -22,7 +22,7 @@ class App extends Component {
 		baseInfo(AndroidAPI.getDomain(), AndroidAPI.getLocale(), AndroidAPI.getToken())
 			.then((res) => {
 				this.setState({
-					name: `${res.firstName} ${res.surnameName}`,
+					name: `${res.firstName || ''} ${res.surnameName || ''}`,
 					country: res.country,
 					avatar: res.picture || avatar_default,
 					response: res,
