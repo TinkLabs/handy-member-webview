@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import baseInfo from '../api/baseInfo';
-import Android from '../utils/Android';
+import AndroidAPI from '../utils/AndroidAPI';
 import Mixpanel from '../utils/Mixpanel';
 import bg from './bg.png';
 import mini_hi from './mini_hi.png';
@@ -18,7 +18,7 @@ class App extends Component {
 			debug: false,
 		};
 		Mixpanel.trackScreenView();
-		baseInfo(Android.getDomain(), Android.getLocale(), Android.getToken())
+		baseInfo(AndroidAPI.getDomain(), AndroidAPI.getLocale(), AndroidAPI.getToken())
 			.then((res) => {
 				this.setState({
 					name: `${res.firstName} ${res.surnameName}`,
@@ -53,19 +53,19 @@ class App extends Component {
 							<table>
 								<tr>
 									<td>get Domain</td>
-									<td>{Android.getDomain()}</td>
+									<td>{AndroidAPI.getDomain()}</td>
 								</tr>
 								<tr>
 									<td>get Locale</td>
-									<td>{Android.getLocale()}</td>
+									<td>{AndroidAPI.getLocale()}</td>
 								</tr>
 								<tr>
 									<td>get getToken</td>
-									<td>{Android.getToken()}</td>
+									<td>{AndroidAPI.getToken()}</td>
 								</tr>
 								<tr>
 									<td>get getAndroidGlobalProperty</td>
-									<td>{JSON.stringify(Android.getAndroidGlobalProperty())}</td>
+									<td>{JSON.stringify(AndroidAPI.getAndroidGlobalProperty())}</td>
 								</tr>
 							</table>
 						</div>
