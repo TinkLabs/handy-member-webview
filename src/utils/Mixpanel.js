@@ -7,6 +7,8 @@ export default {
 		try {
 			const properties = AndroidAPI.getAndroidGlobalProperty();
 			if (!properties.device_user_id) return;
+			mixpanel.init("6c29862add298fba05d9fd796a51e441");
+
 			mixpanel.identify(properties.device_user_id);
 			mixpanel.track(
 				"Screen View",
