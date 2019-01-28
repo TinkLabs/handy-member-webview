@@ -16,6 +16,7 @@ class App extends Component {
 			country: '',
 			avatar: '',
 			debug: false,
+			response: {},
 		};
 		Mixpanel.trackScreenView();
 		baseInfo(AndroidAPI.getDomain(), AndroidAPI.getLocale(), AndroidAPI.getToken())
@@ -24,6 +25,7 @@ class App extends Component {
 					name: `${res.firstName} ${res.surnameName}`,
 					country: res.country,
 					avatar: res.picture || avatar_default,
+					response: res,
 				});
 			})
 			.catch((err) => {
@@ -36,7 +38,7 @@ class App extends Component {
 		})
 	}
 	render() {
-		const { name, country, avatar, debug } = this.state;
+		const { name, country, avatar, debug, response } = this.state;
 		return (
 			<div className={styles.App}>
 				<img className={styles.backgroundImage} src={bg} alt=""/>
@@ -66,6 +68,10 @@ class App extends Component {
 								<tr>
 									<td>get getAndroidGlobalProperty</td>
 									<td>{JSON.stringify(AndroidAPI.getAndroidGlobalProperty())}</td>
+								</tr>
+								<tr>
+									<td>repsonse</td>
+									<td>{JSON.stringify(response)}</td>
 								</tr>
 							</table>
 						</div>
