@@ -39,14 +39,14 @@ class App extends Component {
 		const { name, country, avatar, debug } = this.state;
 		return (
 			<div className={styles.App}>
-				<img className={styles.backgroundImage} src={bg} />
+				<img className={styles.backgroundImage} src={bg} alt=""/>
 				<div className={styles.container}>
 					<div className={styles.iconWrapper}>
 						<div className={styles.icon} style={{backgroundImage: `url(${avatar})`}}></div>
 					</div>
 					<div className={styles.name}>{name}</div>
 					<div className={styles.location}>{country}</div>
-					<img className={styles.logo} src={mini_hi} />
+					<img className={styles.logo} src={mini_hi} alt="" />
 					<button className={styles.debugToggleButton} onClick={this.onDebugClick}></button>
 					{debug ?
 						<div className={styles.debug}>
